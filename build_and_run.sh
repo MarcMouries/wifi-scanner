@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Paths
-SRC_DIR="./src"
-BUILD_DIR="./dist"
+SRC_DIR="./src/lib/macos"
+BUILD_DIR="./lib"
 SRC_FILE="wifi_scanner.m"
-OUTPUT_BINARY="wifi_scanner"
+OUTPUT_BINARY="wifi_scanner_macos"
 
 # Check if build directory exists, if not, create it
 if [ ! -d "$BUILD_DIR" ]; then
