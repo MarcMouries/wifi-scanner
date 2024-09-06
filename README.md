@@ -7,6 +7,8 @@ The **WiFi Scanner** is a macOS command-line utility written in Objective-C that
 
 The output is formatted as a JSON object with a clear structure, making it suitable for integrating with other tools or services that consume JSON data.
 
+The project also includes a Rust integration that runs the compiled Wi-Fi scanner binary (`wifi_scanner_macos`) and processes its output.
+
 ## Features
 
 - Scans for all available Wi-Fi networks on your machine.
