@@ -24,37 +24,57 @@ The project also includes a Rust integration that runs the compiled Wi-Fi scanne
   - Country code
   - Information element data
 
+## Project Structure
+
+```
+.
+├── LICENSE
+├── README.md
+├── build_and_run.sh
+├── lib
+│   └── wifi_scanner_macos       # Compiled Wi-Fi scanner binary
+└── src
+    ├── main.rs                  # Rust code to run the Wi-Fi scanner binary
+    └── lib
+        └── macos
+            └── wifi_scanner.m   # Objective-C source for the Wi-Fi scanner
+```
+
 ## Usage
 
 ### Requirements
 
 - macOS (since the `CoreWLAN` framework is used, this will only run on macOS).
-- Xcode Command Line Tools (for `clang` compiler).
+- Xcode Command Line Tools (for compiling the Objective-C code).
+- Rust and Cargo (for running the Rust integration).
 
-### Compiling the Program
+### Compiling the Wi-Fi Scanner (Objective-C)
 
-1. Clone or download this repository.
-2. Open a terminal and navigate to the root of the project.
-3. Use the following shell script to compile and run the program:
+1. Open a terminal and navigate to the root of the project.
+2. Use the following shell script to compile the Objective-C Wi-Fi scanner and run it:
 
 ```bash
 ./build_and_run.sh
 ```
 
 This script will:
-- Compile the source file located in the `src/` folder.
-- Place the compiled binary in the `build/` folder.
+- Compile the source file located in the `src/lib/macos` folder.
+- Place the compiled binary in the `lib/` folder.
 - Run the compiled binary and output the Wi-Fi network information in JSON format.
 
-### Running the Program
+### Running the Wi-Fi Scanner using Rust
 
-Once the program is compiled, it can be run from the `build/` directory:
+Once the Objective-C binary is compiled (`lib/wifi_scanner_macos`), you can use Rust to execute the binary and process its output:
+
+1. Compile and run the Rust program:
 
 ```bash
-./build/wifi_scan
+cargo run
 ```
 
-The program will scan for available Wi-Fi networks and output the results as a JSON object in the terminal.
+This will:
+- Execute the compiled `wifi_scanner_macos` binary.
+- Capture the JSON output and display it in a human-readable format.
 
 ### Example Output
 
@@ -100,10 +120,6 @@ If an error occurs during the scan, such as when the Wi-Fi interface is unavaila
   "message": "Error scanning for networks: <error message>"
 }
 ```
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Author
 
